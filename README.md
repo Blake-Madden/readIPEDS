@@ -41,7 +41,6 @@ Specifically, complete IPEDS data files (*.csv) are loaded and transformed in th
  
  ```r
 library(tidyverse)
-library(magrittr)
 library(readIPEDS)
 
 # All IPEDS files should be in your documents folder:
