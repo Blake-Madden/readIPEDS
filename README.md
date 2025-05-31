@@ -24,10 +24,13 @@ Specifically, complete IPEDS data files (*.csv) are loaded and transformed in th
  ## Usage
  
  For each component, download all CSV datasets and XLSX dictionary files into a folder.
- (The Institutional Characteristics files should be downloaded if you intend to include supplemental information to your datasets.)
- Call `set_ipeds_data_folder()` to specify this folder so that knows *readIPEDS* where to load the data from.
- Then call functions such as `academic_libraries_load_file()` with the file year to load and it will import the file in question.
+ (The Institutional Characteristics files should be downloaded to include supplemental information to your datasets.)
+ 
+ Next, call `set_ipeds_data_folder()` to specify this folder so that *readIPEDS* knows where to load the data from.
+ 
+ Then call functions such as `academic_libraries_load_file()` with the file year to import the data.
  (Note that loading functions support filtering on specific sets of institutions.)
+ 
  Finally, this dataset can be pivoted and joined with additional information.
  
  The following example will:
