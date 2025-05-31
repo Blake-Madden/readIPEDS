@@ -1,0 +1,13 @@
+Package: readIPEDS
+Type: Package
+Title: Data importing and transformation functions for IPEDS data
+Version: 0.4
+Author: Blake Madden
+Maintainer: Blake Madden <bmadden@edisonohio.edu>
+Description: Data importing and transformation functions for IPEDS data.
+License: BSD 3-clause License + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: tidyverse, broom, magrittr, janitor, readxl, stringr,
+         purrr, dplyr, readr, tidyr, forcats, tibble
+RoxygenNote: 7.3.2
