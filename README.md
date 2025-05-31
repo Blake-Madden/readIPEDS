@@ -24,7 +24,7 @@ Specifically, complete IPEDS data files (*.csv) are loaded and transformed in th
  ## Usage
  
  For each component, download all CSV datasets and XLSX dictionary files into a folder.
- (The Institutional Characteristics files should be downloaded to include supplemental information to your datasets.)
+ (The Institutional Characteristics files should also be downloaded to include supplemental information to your datasets.)
  
  Next, call `set_ipeds_data_folder()` to specify this folder so that *readIPEDS* knows where to load the data from.
  
