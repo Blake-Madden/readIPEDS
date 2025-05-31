@@ -161,4 +161,5 @@ utils::globalVariables(c('varTitle', 'varname', 'UNITID', 'Academic Year', 'Type
                          'Circulation', 'Fact', '.', 'Demographic', 'codevalue', 'valuelabel', 'INSTNM',
                          'Institution', 'Campus', 'sep', 'CIP Description', 'MAJORNUM', 'AWLEVEL', 'CIP',
                          'Description', 'CIPCode', 'CIPTitle', 'Count', 'Gender', 'longDescription',
-                         'CIPCODE', 'Race'))
+                         'CIPCODE', 'Race', 'Race Description', 'Employee Type', 'GenderTotal', 'GrandTotal', 'RaceTotal',
+                         'SNHCAT'))

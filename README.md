@@ -19,6 +19,7 @@ Specifically, complete IPEDS data files (*.csv) are loaded and transformed in th
  
  - Academic Libraries
  - Completions
+ - Fall Staff (New Hires)
  - Institutional Characteristics
  
  ## Usage

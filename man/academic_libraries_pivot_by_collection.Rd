@@ -27,7 +27,8 @@ library(tidyverse)
 set_ipeds_data_folder(path.expand('~'))
   
 ALMediaData <-
-  academic_libraries_load_file(year=2014) \%>\%
+  academic_libraries_load_file(year=2014,
+                               institutions=oh_community_colleges) \%>\%
     union_all(academic_libraries_load_file(year=2015)) \%>\%
     union_all(academic_libraries_load_file(year=2016)) \%>\%
     union_all(academic_libraries_load_file(year=2017)) \%>\%
