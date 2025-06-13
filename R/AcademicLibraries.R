@@ -46,6 +46,7 @@ academic_libraries_load_file_internal <- function(ALFile, ..., institutions = NU
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
 #' @examples
+#' \dontrun{
 #' library(tidyverse)
 #' 
 #' # Assuming you have downloaded the AL files
@@ -56,12 +57,13 @@ academic_libraries_load_file_internal <- function(ALFile, ..., institutions = NU
 #' ALData <-
 #'   academic_libraries_load_file(year=2014,
 #'                                institutions=oh_community_colleges) %>%
-#'     union_all(academic_libraries_load_file(year=2015)) %>%
-#'     union_all(academic_libraries_load_file(year=2016)) %>%
-#'     union_all(academic_libraries_load_file(year=2017)) %>%
-#'     union_all(academic_libraries_load_file(year=2018)) %>%
-#'     union_all(academic_libraries_load_file(year=2019)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2015)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2016)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2017)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2018)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2019)) %>%
 #'     academic_libraries_expand_colnames()
+#' }
 #' @export
 academic_libraries_expand_colnames <- function(data)
     {
@@ -132,6 +134,7 @@ academic_libraries_expand_colnames <- function(data)
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
 #' @examples
+#' \dontrun{
 #' library(tidyverse)
 #' 
 #' # Assuming you have downloaded the AL files
@@ -141,11 +144,12 @@ academic_libraries_expand_colnames <- function(data)
 #' 
 #' ALData <-
 #'   academic_libraries_load_file(year=2014) %>%
-#'     union_all(academic_libraries_load_file(year=2015)) %>%
-#'     union_all(academic_libraries_load_file(year=2016)) %>%
-#'     union_all(academic_libraries_load_file(year=2017)) %>%
-#'     union_all(academic_libraries_load_file(year=2018)) %>%
-#'     union_all(academic_libraries_load_file(year=2019))
+#'     bind_rows(academic_libraries_load_file(year=2015)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2016)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2017)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2018)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2019))
+#' }
 #' @export
 academic_libraries_load_file <- function(year, ..., institutions = NULL)
     {
@@ -210,6 +214,7 @@ academic_libraries_pivot <- function(data, pivotColumnsPattern, namesTo, totalNa
 #'       In other words, do not call `academic_libraries_expand_colnames` on the dataset
 #'       before calling this.
 #' @examples
+#' \dontrun{
 #' library(tidyverse)
 #' 
 #' # Assuming you have downloaded the AL files
@@ -220,12 +225,13 @@ academic_libraries_pivot <- function(data, pivotColumnsPattern, namesTo, totalNa
 #' ALMediaData <-
 #'   academic_libraries_load_file(year=2014,
 #'                                institutions=oh_community_colleges) %>%
-#'     union_all(academic_libraries_load_file(year=2015)) %>%
-#'     union_all(academic_libraries_load_file(year=2016)) %>%
-#'     union_all(academic_libraries_load_file(year=2017)) %>%
-#'     union_all(academic_libraries_load_file(year=2018)) %>%
-#'     union_all(academic_libraries_load_file(year=2019)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2015)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2016)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2017)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2018)) %>%
+#'     bind_rows(academic_libraries_load_file(year=2019)) %>%
 #'     academic_libraries_pivot_by_collection()
+#' }
 #' @export
 academic_libraries_pivot_by_collection <- function(data)
     {

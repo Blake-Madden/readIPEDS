@@ -19,6 +19,7 @@ It is required that the column names in the input are in short form.
       before calling this.
 }
 \examples{
+\dontrun{
 library(tidyverse)
 
 # Assuming you have downloaded the AL files
@@ -29,10 +30,11 @@ set_ipeds_data_folder(path.expand('~'))
 ALMediaData <-
   academic_libraries_load_file(year=2014,
                                institutions=oh_community_colleges) \%>\%
-    union_all(academic_libraries_load_file(year=2015)) \%>\%
-    union_all(academic_libraries_load_file(year=2016)) \%>\%
-    union_all(academic_libraries_load_file(year=2017)) \%>\%
-    union_all(academic_libraries_load_file(year=2018)) \%>\%
-    union_all(academic_libraries_load_file(year=2019)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2015)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2016)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2017)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2018)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2019)) \%>\%
     academic_libraries_pivot_by_collection()
+}
 }

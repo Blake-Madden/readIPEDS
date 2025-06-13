@@ -36,6 +36,7 @@ The '99' CIP Code subtotals will be removed from the output. Also, if the final
 version of the completions file is not found, then the provisional version will be used.
 }
 \examples{
+\dontrun{
 library(tidyverse)
 
 # Assuming you have downloaded the completion and dictionary files
@@ -45,11 +46,12 @@ set_ipeds_data_folder(path.expand('~'))
   
 completionsData <-
   completions_load_cip_code_file(year=2014) \%>\%
-    union_all(completions_load_cip_code_file(year=2015)) \%>\%
-    union_all(completions_load_cip_code_file(year=2016)) \%>\%
-    union_all(completions_load_cip_code_file(year=2017)) \%>\%
-    union_all(completions_load_cip_code_file(year=2018)) \%>\%
-    union_all(completions_load_cip_code_file(year=2019))
+    bind_rows(completions_load_cip_code_file(year=2015)) \%>\%
+    bind_rows(completions_load_cip_code_file(year=2016)) \%>\%
+    bind_rows(completions_load_cip_code_file(year=2017)) \%>\%
+    bind_rows(completions_load_cip_code_file(year=2018)) \%>\%
+    bind_rows(completions_load_cip_code_file(year=2019))
+}
 }
 \author{
 Blake Madden

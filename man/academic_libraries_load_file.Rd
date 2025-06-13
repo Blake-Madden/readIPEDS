@@ -27,6 +27,7 @@ Loads an Academic Libraries file, removes the imputation columns,
 Additional functions to pivot this data are available.
 }
 \examples{
+\dontrun{
 library(tidyverse)
 
 # Assuming you have downloaded the AL files
@@ -36,11 +37,12 @@ set_ipeds_data_folder(path.expand('~'))
 
 ALData <-
   academic_libraries_load_file(year=2014) \%>\%
-    union_all(academic_libraries_load_file(year=2015)) \%>\%
-    union_all(academic_libraries_load_file(year=2016)) \%>\%
-    union_all(academic_libraries_load_file(year=2017)) \%>\%
-    union_all(academic_libraries_load_file(year=2018)) \%>\%
-    union_all(academic_libraries_load_file(year=2019))
+    bind_rows(academic_libraries_load_file(year=2015)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2016)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2017)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2018)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2019))
+}
 }
 \seealso{
 academic_libraries_pivot_by_collection, academic_libraries_pivot_by_circ, academic_libraries_pivot_by_expenditure

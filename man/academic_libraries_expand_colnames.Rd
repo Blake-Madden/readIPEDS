@@ -20,6 +20,7 @@ Changes the variable names in an Academic Libraries file to the more descriptive
 This function should be called after joining multiple AL files.
 }
 \examples{
+\dontrun{
 library(tidyverse)
 
 # Assuming you have downloaded the AL files
@@ -30,12 +31,13 @@ set_ipeds_data_folder(path.expand('~'))
 ALData <-
   academic_libraries_load_file(year=2014,
                                institutions=oh_community_colleges) \%>\%
-    union_all(academic_libraries_load_file(year=2015)) \%>\%
-    union_all(academic_libraries_load_file(year=2016)) \%>\%
-    union_all(academic_libraries_load_file(year=2017)) \%>\%
-    union_all(academic_libraries_load_file(year=2018)) \%>\%
-    union_all(academic_libraries_load_file(year=2019)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2015)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2016)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2017)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2018)) \%>\%
+    bind_rows(academic_libraries_load_file(year=2019)) \%>\%
     academic_libraries_expand_colnames()
+}
 }
 \author{
 Blake Madden

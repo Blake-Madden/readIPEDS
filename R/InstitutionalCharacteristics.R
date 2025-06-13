@@ -6,6 +6,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
 #' @examples
+#' \dontrun{
 #' library(tidyverse)
 #' library(magrittr)
 #' 
@@ -22,11 +23,11 @@
 #'                   WEBADDR, LONGITUD, LATITUDE)
 #'     completionsData <-
 #'       completions_load_cip_code_file(year=2014) %>%
-#'       union_all(completions_load_cip_code_file(year=2015)) %>%
-#'       union_all(completions_load_cip_code_file(year=2016)) %>%
-#'       union_all(completions_load_cip_code_file(year=2017)) %>%
-#'       union_all(completions_load_cip_code_file(year=2018)) %>%
-#'       union_all(completions_load_cip_code_file(year=2019))
+#'       bind_rows(completions_load_cip_code_file(year=2015)) %>%
+#'       bind_rows(completions_load_cip_code_file(year=2016)) %>%
+#'       bind_rows(completions_load_cip_code_file(year=2017)) %>%
+#'       bind_rows(completions_load_cip_code_file(year=2018)) %>%
+#'       bind_rows(completions_load_cip_code_file(year=2019))
 #'       
 #'     if (!is.null(completionsData))
 #'         {
@@ -34,6 +35,7 @@
 #'             left_join(institutionFile, by = c("UNITID" = "UNITID"))
 #'         }
 #'     }
+#' }
 #' @export
 institution_characteristics_load_directory_info_file <- function()
     {
