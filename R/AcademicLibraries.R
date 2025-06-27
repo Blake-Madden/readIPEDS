@@ -4,8 +4,7 @@
 #' @import broom
 academic_libraries_load_file_internal <- function(ALFile, ..., institutions = NULL)
     {
-    # the year on the file is financial year, so step back a year to convert to academic year
-    fileYear <- as.numeric(stringr::str_extract(ALFile, "([0-9]{4})")) - 1
+    fileYear <- as.numeric(stringr::str_extract(ALFile, "([0-9]{4})"))
 
     message("Importing academic libraries file...")
     ALData <- readr::read_csv(ALFile) %>%
@@ -53,7 +52,7 @@ academic_libraries_load_file_internal <- function(ALFile, ..., institutions = NU
 #' # (e.g., "al2018_rv.csv", "al2018.xlsx") from
 #' #  2014-2019 into your documents folder.
 #' set_ipeds_data_folder(path.expand('~'))
-#'   
+#'
 #' ALData <-
 #'   academic_libraries_load_file(year=2014,
 #'                                institutions=oh_community_colleges) %>%
@@ -286,7 +285,8 @@ academic_libraries_pivot_by_expenditure <- function(data)
         }
 
     academic_libraries_pivot(data,
-                            "(LSALWAG|LFRNGBN|LEXMSBB|LEXMSCS|LEXMSOT|LEXOMPS|LEXOMOT)", "Expenditure Type", "Expenditures")
+        "(LSALWAG|LFRNGBN|LEXMSBB|LEXMSCS|LEXMSOT|LEXOMPS|LEXOMOT)",
+        "Expenditure Type", "Expenditures")
     }
 
 #' Pivots an Academic Libraries dataset into a circulation and collection dataset.
