@@ -314,7 +314,7 @@ academic_libraries_pivot_by_circ_and_collection <- function(data, includeGrouped
     academicLibrariesMediaData <- academic_libraries_pivot_by_collection(data) %>%
     dplyr::group_by(UNITID, `Academic Year`, `Type (Simple)`) %>%
     dplyr::summarize("Collection" = sum(`Collection`, na.rm=T))
-    
+
     academicLibrariesCircData <- academic_libraries_pivot_by_circ(data) %>%
     dplyr::group_by(UNITID, `Academic Year`, `Type (Simple)`) %>%
     dplyr::summarize("Circulation" = sum(`Circulation`, na.rm=T))
@@ -322,12 +322,33 @@ academic_libraries_pivot_by_circ_and_collection <- function(data, includeGrouped
     combinedData <- academicLibrariesMediaData %>%
     dplyr::left_join(academicLibrariesCircData,
               c("UNITID"="UNITID", "Academic Year"="Academic Year", "Type (Simple)" = "Type (Simple)"))
-    
+
     if (includeGroupedZScores)
         {
         combinedData$`Collection (Std. x Year)` <- stats::ave(combinedData$Collection, combinedData$`Academic Year`, FUN=scale)
         combinedData$`Circulation (Std. x Year)` <- stats::ave(combinedData$Circulation, combinedData$`Academic Year`, FUN=scale)
         }
-    
+
     return(combinedData)
+    }
+
+#' Pivots an Academic Libraries dataset into an inter-library loan dataset.
+#' @description Creates an inter-library column (by school and year),
+#'              with a categorical column specifying the loan type (i.e., outgoing or received).
+#' @param data An academic libraries dataset loaded from `academic_libraries_load_file`.
+#' @note It is required that the column names in the input are in short form.
+#'       In other words, do not call `academic_libraries_expand_colnames` on the dataset
+#'       before calling this.
+#' @export
+academic_libraries_pivot_by_interlibrary_loan <- function(data)
+    {
+    if (is.null(data))
+        {
+        warning("Invalid dataset in academic_libraries_pivot_by_interlibrary_loan().")
+        return(NULL)
+        }
+
+    academic_libraries_pivot(data,
+                             "(LILLDPR|LILLDRC)",
+                             "Loan Type", "Loans")
     }
