@@ -8,7 +8,7 @@ completions_load_cip_code_file_internal <- function(completionsFile, dictionaryF
   # the year on the file is financial year, so step back a year to convert to academic year
   fileYear <- as.numeric(stringr::str_extract(completionsFile, "([0-9]{4})"))-1
 
-  CipCodeDescriptions <- readr::read_csv(CipDictionarFile) %>%
+  CipCodeDescriptions <- readr::read_csv(CipDictionarFile, na = c("", "NA", ".")) %>%
     dplyr::select(CIPCode, CIPTitle) %>%
     dplyr::rename("CIPCODE" = CIPCode) %>%
     dplyr::rename("CIP Description" = CIPTitle)

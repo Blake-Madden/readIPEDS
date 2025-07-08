@@ -14,7 +14,7 @@
 #' @export
 census_load_demographic_percentages <- function(filePath)
     {
-    demoData <- readr::read_csv(filePath) %>%
+    demoData <- readr::read_csv(filePath, na = c("", "NA", ".")) %>%
         dplyr::mutate(Fact =
             dplyr::recode(Fact,
                           "Female persons, percent" = "Women",

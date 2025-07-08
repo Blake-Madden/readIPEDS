@@ -57,7 +57,7 @@ institution_characteristics_load_directory_info_file <- function()
         return(NULL)
         }
 
-    ICData <- readr::read_csv(stringr::str_glue("{pkg.env$readIPEDS_data_folder}/", institutionFilePath)) %>%
+    ICData <- readr::read_csv(stringr::str_glue("{pkg.env$readIPEDS_data_folder}/", institutionFilePath), na = c("", "NA", ".")) %>%
     # useful for forcats if you need to collapse these
     dplyr::mutate("UNITID" = forcats::as_factor(UNITID))
 

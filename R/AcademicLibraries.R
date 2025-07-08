@@ -7,7 +7,7 @@ academic_libraries_load_file_internal <- function(ALFile, ..., institutions = NU
     fileYear <- as.numeric(stringr::str_extract(ALFile, "([0-9]{4})"))
 
     message("Importing academic libraries file...")
-    ALData <- readr::read_csv(ALFile) %>%
+    ALData <- readr::read_csv(ALFile, na = c("", "NA", ".")) %>%
         # remove empty columns at end of file
         janitor::remove_empty(which = "cols") %>%
         # remove imputation fields
@@ -372,6 +372,7 @@ academic_libraries_pivot_by_staff <- function(data)
     academic_libraries_pivot(data,
                              "(LSLIBRN|LSOPROF|LSOPAID|LSSTAST)",
                              "Employee Type", "FTE") %>%
+        # uppercase "fte" in the labels to make it look nicer
         dplyr::mutate("Employee Type" =
                           stringr::str_replace_all(`Employee Type`, "\\bfte\\b", "FTE"))
     }

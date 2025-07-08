@@ -22,7 +22,7 @@ fall_staff_load_new_hires_file_internal <- function(fallStaffNewHiresFile, dicti
         dplyr::rename("Occupations" = `valuelabel`) %>%
         dplyr::select(c("SNHCAT", "Occupations"))
 
-    newHiresData <- readr::read_csv(fallStaffNewHiresFile) %>%
+    newHiresData <- readr::read_csv(fallStaffNewHiresFile, na = c("", "NA", ".")) %>%
         # remove empty columns at end of file
         janitor::remove_empty(which = "cols") %>%
         # remove imputation and total fields (counts that we want are just the ones for race and gender)
