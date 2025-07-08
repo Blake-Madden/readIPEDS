@@ -352,3 +352,26 @@ academic_libraries_pivot_by_interlibrary_loan <- function(data)
                              "(LILLDPR|LILLDRC)",
                              "Loan Type", "Loans")
     }
+
+#' Pivots an Academic Libraries dataset into a staff dataset.
+#' @description Creates a staff dataset (by school and year),
+#'              with a categorical column specifying the employee type (e.g., librarian, student worker, etc.).
+#' @param data An academic libraries dataset loaded from `academic_libraries_load_file`.
+#' @note It is required that the column names in the input are in short form.
+#'       In other words, do not call `academic_libraries_expand_colnames` on the dataset
+#'       before calling this.
+#' @export
+academic_libraries_pivot_by_staff <- function(data)
+    {
+    if (is.null(data))
+        {
+        warning("Invalid dataset in academic_libraries_pivot_by_interlibrary_loan().")
+        return(NULL)
+        }
+
+    academic_libraries_pivot(data,
+                             "(LSLIBRN|LSOPROF|LSOPAID|LSSTAST)",
+                             "Employee Type", "FTE") %>%
+        dplyr::mutate("Employee Type" =
+                          stringr::str_replace_all(`Employee Type`, "\\bfte\\b", "FTE"))
+    }
