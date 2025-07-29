@@ -59,7 +59,7 @@ completions_load_cip_code_file_internal <- function(completionsFile, dictionaryF
                         CipLevel == 1 ~ stringr::str_match(`CIPCODE`, "^([0-9]{2})[.][0-9]{4}")[,2],
                         CipLevel == 2 ~ stringr::str_match(`CIPCODE`, "^([0-9]{2}[.][0-9]{2})[0-9]{2}")[,2],
                         TRUE ~ `CIPCODE`)) %>%
-    dplyr::group_by(`UNITID`, `CIPCODE`, `Race`, `Gender`, `MAJORNUM`, `AWLEVEL`) %>%
+    dplyr::group_by(`UNITID`, `CIPCODE`, `Race`, `Gender`, `AWLEVEL`) %>%
     dplyr::summarize("Count" = sum(`Count`)) %>%
     dplyr::ungroup() %>%
     # add useful description for the CIP codes, race, and award levels
@@ -72,7 +72,7 @@ completions_load_cip_code_file_internal <- function(completionsFile, dictionaryF
     dplyr::mutate("Academic Year" = stringr::str_glue("AY {fileYear}-", stringr::str_sub(as.character(fileYear+1), 3))) %>%
     # reorder columns
     dplyr::select(c("UNITID", "Academic Year", "CIPCODE", "CIP Description",
-                    "AWLEVEL", "Award Description", "MAJORNUM", "Race", "Race Description",
+                    "AWLEVEL", "Award Description", "Race", "Race Description",
                     "Gender", "Count"))
 
   return(completionsData)
