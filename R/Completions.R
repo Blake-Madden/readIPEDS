@@ -1,14 +1,15 @@
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
 completions_load_cip_code_file_internal <- function(completionsFile, dictionaryFile,
-                                           CipDictionarFile,
                                            ...,
                                            institutions=NULL, CipLevel=1)
   {
   # the year on the file is financial year, so step back a year to convert to academic year
-  fileYear <- as.numeric(stringr::str_extract(completionsFile, "([0-9]{4})"))-1
+  fileYear <- as.numeric(stringr::str_extract(completionsFile, "([0-9]{4})")) - 1
 
-  CipCodeDescriptions <- readr::read_csv(CipDictionarFile, na = c("", "NA", ".")) %>%
+  data('cip_codes_2020', package='readIPEDS')
+
+  CipCodeDescriptions <- cip_codes_2020 %>%
     dplyr::select(CIPCode, CIPTitle) %>%
     dplyr::rename("CIPCODE" = CIPCode) %>%
     dplyr::rename("CIP Description" = CIPTitle)
@@ -135,7 +136,6 @@ completions_load_cip_code_file <- function(year, ..., institutions = NULL, CipLe
     fileProvisional <- list.files(pkg.env$readIPEDS_data_folder, pattern=stringr::str_glue("c{year}_a[.]csv", ignore.case=T))
     fileFinal <- list.files(pkg.env$readIPEDS_data_folder, pattern=stringr::str_glue("c{year}_a_rv[.]csv", ignore.case=T))
     dataDictionary <- list.files(pkg.env$readIPEDS_data_folder, pattern=stringr::str_glue("c{year}_a[.]xlsx", ignore.case=T))
-    CIPDictionary <- "CIPCode2020.csv"
 
     if (length(dataDictionary) == 0)
         {
@@ -153,7 +153,6 @@ completions_load_cip_code_file <- function(year, ..., institutions = NULL, CipLe
         completionsFile = stringr::str_glue("{pkg.env$readIPEDS_data_folder}/",
                                             ifelse(purrr::is_empty(fileFinal), fileProvisional, fileFinal)),
         dictionaryFile = stringr::str_glue("{pkg.env$readIPEDS_data_folder}/", dataDictionary),
-        CipDictionarFile = stringr::str_glue("{pkg.env$readIPEDS_data_folder}/", CIPDictionary),
         ...=...,
         institutions = institutions,
         CipLevel = CipLevel)
