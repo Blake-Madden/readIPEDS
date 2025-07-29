@@ -49,7 +49,7 @@ academic_libraries_load_file_internal <- function(ALFile, ..., institutions = NU
 #' library(tidyverse)
 #' 
 #' # Assuming you have downloaded the AL files
-#' # (e.g., "al2018_rv.csv", "al2018.csv") from
+#' # (e.g., "al2018_rv.csv", "al2018.xlsx") from
 #' #  2014-2019 into your documents folder.
 #' set_ipeds_data_folder(path.expand('~'))
 #'
