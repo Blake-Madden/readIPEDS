@@ -7,9 +7,9 @@ Maintainer: Blake Madden <bmadden@edisonohio.edu>
 Description: Data importing and transformation functions for IPEDS data.
 License: BSD 3-clause License + file LICENSE
 Encoding: UTF-8
-LazyData: false
+LazyData: true
 Imports: tidyverse, broom, magrittr, janitor, readxl, stringr,
-         purrr, dplyr, readr, tidyr, forcats, tibble
+         purrr, dplyr, readr, tidyr, forcats, tibble, utils
 RoxygenNote: 7.3.2
 Depends: 
     R (>= 3.5)

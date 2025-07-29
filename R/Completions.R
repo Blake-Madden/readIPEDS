@@ -7,7 +7,7 @@ completions_load_cip_code_file_internal <- function(completionsFile, dictionaryF
   # the year on the file is financial year, so step back a year to convert to academic year
   fileYear <- as.numeric(stringr::str_extract(completionsFile, "([0-9]{4})")) - 1
 
-  data('cip_codes_2020', package='readIPEDS')
+  utils::data('cip_codes_2020', package='readIPEDS')
 
   CipCodeDescriptions <- cip_codes_2020 %>%
     dplyr::select(CIPCode, CIPTitle) %>%
